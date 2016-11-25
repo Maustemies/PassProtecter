@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
         tempEncryptedPasswordFile = passwordFile;
 
         Intent intent = new Intent(MainActivity.this, PasswordQueryPopUp.class);
-        intent.putExtra(Constants.MAIN_PASSWORD_TAG, passwordFile.MainPassword);
+        intent.putExtra(Constants.MAIN_PASSWORD_TAG, tempEncryptedPasswordFile.MainPassword);
         startActivityForResult(intent, Constants.REQUEST_CODE_PASSWORD_POPUP);
     }
 }

@@ -45,8 +45,8 @@ public class PasswordQueryPopUp extends Activity {
             @Override
             public void onClick(View v) {
                 String givenPassword = editTextMainPassword.getText().toString();
-                String encryptedMainPassword = SecurityEngine.EncryptString(givenPassword, givenPassword);
-                if(givenPassword.equals(encryptedMainPassword)) {
+                String decryptedMainPassword = SecurityEngine.DecryptString(givenPassword, passwordToTestAgainst);
+                if(givenPassword.equals(decryptedMainPassword)) {
                     Intent intent = new Intent();
                     intent.putExtra(Constants.MAIN_PASSWORD_TAG, givenPassword);
                     setResult(RESULT_OK, intent);

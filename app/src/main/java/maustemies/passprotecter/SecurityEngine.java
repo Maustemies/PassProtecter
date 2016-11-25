@@ -12,6 +12,7 @@ import com.mobapphome.mahencryptorlib.MAHEncryptor;
 public class SecurityEngine {
 
     public static String EncryptString(String password, String input) {
+        while(password.length() <= 18) password+= " ";
         try {
             MAHEncryptor mahEncryptor = MAHEncryptor.newInstance(password);
             String encrypted = mahEncryptor.encode(input);
@@ -25,6 +26,7 @@ public class SecurityEngine {
     }
 
     public static String DecryptString(String password, String input) {
+        while(password.length() <= 18) password+= " ";
         try {
             MAHEncryptor mahEncryptor = MAHEncryptor.newInstance(password);
             String decrypted = mahEncryptor.decode(input);

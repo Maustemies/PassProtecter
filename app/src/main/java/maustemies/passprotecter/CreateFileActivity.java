@@ -28,10 +28,13 @@ public class CreateFileActivity extends AppCompatActivity implements FileManager
         buttonCreatePasswordFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!editTextMainPassword.getText().toString().equals("") && !editTextMainPasswordConfirmation.getText().toString().equals("")) {
-                    if(editTextMainPassword.getText().toString().equals(editTextMainPasswordConfirmation.getText().toString())) {
+                String givenMainPassword = editTextMainPassword.getText().toString();
+                String givenMainPasswordConfirmation = editTextMainPasswordConfirmation.getText().toString();
+                if(!givenMainPassword.equals("") && !givenMainPasswordConfirmation.equals("")) {
+                    if(givenMainPassword.equals(givenMainPasswordConfirmation)) {
                         FileManager fileManager = new FileManager(getApplicationContext(), CreateFileActivity.this);
-                        fileManager.createFile(MODE_PRIVATE, editTextFileName.getText().toString(), editTextMainPassword.getText().toString());
+                        String ecryptedMainPassword = SecurityEngine.EncryptString(givenMainPassword, givenMainPassword);
+                        fileManager.createFile(MODE_PRIVATE, editTextFileName.getText().toString(), ecryptedMainPassword);
                     }
                     else {
                         Toast.makeText(CreateFileActivity.this, "Passwords do not match!", Toast.LENGTH_LONG).show();
