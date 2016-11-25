@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">PassProtecter</string>
+
+    <!--
+    Upper menu stuff
+    -->
     <string name="action_settings">Settings</string>
+    <string name="action_addPassword">Add Password</string>
 
     <!--
     General stuff
