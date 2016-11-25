@@ -80,9 +80,16 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            // TODO: Start the settings activity
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+            {
+                break;
+            }
+            case R.id.action_addPassword:
+            {
+                // TODO: Start password adding
+                break;
+            }
         }
 
         return super.onOptionsItemSelected(item);
