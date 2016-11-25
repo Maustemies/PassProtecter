@@ -22,4 +22,5 @@ public class Constants {
     public static final String CREATE_FILE_ACTIVITY_TAG = "CreateFileActivity";
     public static final String OPEN_FILE_ACTIVITY_TAG = "OpenFileActivity";
     public static final String PASSWORD_POPUP_TAG = "PasswordQueryPopUp";
+    public static final String SECURITY_ENGINE_TAG = "SecurityEngine";
 }

@@ -1,6 +1,7 @@
 package maustemies.passprotecter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -43,8 +44,12 @@ public class PasswordQueryPopUp extends Activity {
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editTextMainPassword.getText().toString().equals(passwordToTestAgainst)) {
-                    setResult(RESULT_OK);
+                String givenPassword = editTextMainPassword.getText().toString();
+                String encryptedMainPassword = SecurityEngine.EncryptString(givenPassword, givenPassword);
+                if(givenPassword.equals(encryptedMainPassword)) {
+                    Intent intent = new Intent();
+                    intent.putExtra(Constants.MAIN_PASSWORD_TAG, givenPassword);
+                    setResult(RESULT_OK, intent);
                     finish();
                 }
             }
