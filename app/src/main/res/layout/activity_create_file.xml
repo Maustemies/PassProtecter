@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_file"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="maustemies.passprotecter.CreateFileActivity">
+
+    <TextView
+        android:id="@+id/textViewMainPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp"
+        android:text="@string/textView_main_password"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutMainPassword"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textViewMainPassword"
+        android:layout_marginTop="40dp"
+        android:padding="20dp">
+        <EditText
+            android:id="@+id/editTextMainPassword"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimaryText"
+            android:hint="@string/hint_main_password"/>
+        <EditText
+            android:id="@+id/editTextMainPasswordConfirmation"
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimaryText"
+            android:hint="@string/hint_main_password_confirmation"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonCreatePasswordFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp"
+        android:text="@string/button_create_password_file"/>
+
+</RelativeLayout>

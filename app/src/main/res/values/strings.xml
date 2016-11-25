@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">PassProtecter</string>
+    <string name="action_settings">Settings</string>
+
+    <!--
+    General stuff
+    -->
+    <string name="button_create_password_file">Create a password file</string>
+
+    <!--
+    MainActivity stuff
+    -->
+    <string name="button_choose_password_file">Choose a password file</string>
+
+    <!--
+    CreateFile stuff
+    -->
+    <string name="textView_main_password">Main password</string>
+    <string name="hint_main_password">Give a main password for the password file</string>
+    <string name="hint_main_password_confirmation">Re-type the main password</string>
+</resources>
