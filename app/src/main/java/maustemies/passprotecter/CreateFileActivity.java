@@ -14,8 +14,6 @@ public class CreateFileActivity extends AppCompatActivity implements FileManager
     EditText editTextMainPassword;
     EditText editTextMainPasswordConfirmation;
 
-    public static final String FILEPATH_TAG = "filepath";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +48,11 @@ public class CreateFileActivity extends AppCompatActivity implements FileManager
     }
 
     @Override
-    public void onFileCreated(String filePath) {
-        Log.d(Constants.CREATE_FILE_ACTIVITY_TAG, "onFileCreated with filepath: "+ filePath);
+    public void onFileCreated(String fileName) {
+        Log.d(Constants.CREATE_FILE_ACTIVITY_TAG, "onFileCreated with fileName: "+ fileName);
 
         Intent intent = new Intent();
-        intent.putExtra(FILEPATH_TAG, filePath);
+        intent.putExtra(Constants.FILENAME_TAG, fileName);
         setResult(RESULT_OK, intent);
         finish();
     }

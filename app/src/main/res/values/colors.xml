@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimaryText">#000000</color>
+    <color name="colorGreen">#22d825</color>
+    <color name="colorRed">#d82222</color>
 </resources>

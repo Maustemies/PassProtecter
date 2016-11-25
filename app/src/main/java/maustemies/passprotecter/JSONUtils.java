@@ -5,7 +5,9 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Maustemies on 25.11.2016.
@@ -31,7 +33,6 @@ public class JSONUtils {
             JSONObject passwordListObject = mainObject.getJSONObject(PasswordFile.PASSWORD_LIST_OBJECT_TAG);
 
             Iterator<String> keys = passwordListObject.keys();
-            Log.d(Constants.JSON_UTILS_TAG, "GetPasswordFileFromString found keys: " + keys);
 
             ArrayMap<String, String> passwordList = new ArrayMap<>();
             while(keys.hasNext()) {

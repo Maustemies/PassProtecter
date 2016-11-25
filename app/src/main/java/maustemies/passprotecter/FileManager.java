@@ -22,7 +22,7 @@ public class FileManager {
 
     public interface FileManagerCreateFileInterface {
         public void onError(String error);
-        public void onFileCreated(String filePath);
+        public void onFileCreated(String fileName);
     }
 
     FileManagerMainActivityInterface mFileManagerMainActivityInterface;
@@ -39,11 +39,11 @@ public class FileManager {
         mFileManagerCreateFileInterface = fileManagerCreateFileInterface;
     }
 
-    public void readFile(String filePath) {
-        Log.d(Constants.FILE_MANAGER_TAG, "readFile with path: " + filePath);
+    public void readFile(String fileName) {
+        Log.d(Constants.FILE_MANAGER_TAG, "readFile with name: " + fileName);
 
         try {
-            FileInputStream fileInputStream = mContext.openFileInput(filePath);
+            FileInputStream fileInputStream = mContext.openFileInput(fileName);
             StringBuffer stringBuffer = new StringBuffer();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
             String line = null;
@@ -70,7 +70,6 @@ public class FileManager {
             FileOutputStream fileOutputStream = mContext.openFileOutput(FILENAME, mode);
             fileOutputStream.write(stuffToWriteToFile.getBytes());
             fileOutputStream.close();
-            String filePath = mContext.getFilesDir() + "/" + FILENAME;
             mFileManagerCreateFileInterface.onFileCreated(FILENAME);
         }
         catch (Exception e) {

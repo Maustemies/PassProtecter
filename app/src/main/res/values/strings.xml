@@ -18,4 +18,12 @@
     <string name="textView_main_password">Main password</string>
     <string name="hint_main_password">Give a main password for the password file</string>
     <string name="hint_main_password_confirmation">Re-type the main password</string>
+
+    <!--
+    OpenFile stuff
+    -->
+    <string name="textView_found_files">List of found files</string>
+    <string name="button_back">&#8592;Back</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_ok">OK</string>
 </resources>
