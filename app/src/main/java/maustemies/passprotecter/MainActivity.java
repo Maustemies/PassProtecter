@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
                     Toast.makeText(MainActivity.this, "Selected file: " + fileName, Toast.LENGTH_LONG).show();
                     fileManager.readFile(fileName);
                 }
+                break;
             }
             case Constants.REQUEST_CODE_FILE_CHOOSER:
             {
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
                     Toast.makeText(MainActivity.this, "Selected file: " + fileName, Toast.LENGTH_LONG).show();
                     fileManager.readFile(fileName);
                 }
+                break;
             }
             case Constants.REQUEST_CODE_PASSWORD_POPUP:
             {
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
                 if(resultCode == RESULT_OK) {
 
                 }
+                break;
             }
         }
     }
