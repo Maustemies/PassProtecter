@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
     Button buttonChooseFile;
     Button buttonCreateFile;
     ListView listView;
+    TextView textViewInstructions;
 
     FileManager fileManager;
     PasswordFile tempEncryptedPasswordFile;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
 
     private void InitViews() {
         listView = (ListView) findViewById(R.id.listView);
+        textViewInstructions = (TextView) findViewById(R.id.textViewInstructions);
 
         buttonChooseFile = (Button) findViewById(R.id.buttonChooseFile);
         buttonChooseFile.setOnClickListener(new View.OnClickListener() {
@@ -132,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
     private void FillListViewFromJSON(PasswordFile passwordFile) {
         Log.d(Constants.MAIN_ACTIVITY_TAG, "FillListViewWithPasswordFile");
 
-        if(listView == null) return;
         listView.setVisibility(View.VISIBLE);
+        textViewInstructions.setVisibility(View.VISIBLE);
 
         ArrayMap<String, String> passwords = passwordFile.Passwords;
         passwordListViewItems = new ArrayList<>();

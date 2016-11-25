@@ -11,6 +11,7 @@
     MainActivity stuff
     -->
     <string name="button_choose_password_file">Choose a password file</string>
+    <string name="textView_instructions">Here are your saved passwords</string>
 
     <!--
     CreateFile stuff
