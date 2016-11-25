@@ -18,16 +18,12 @@
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryText"/>
 
-    <ScrollView
-        android:layout_below="@+id/textViewFoundFiles"
-        android:layout_above="@+id/buttonBack"
+
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+        android:layout_height="match_parent"
+        android:layout_below="@id/textViewFoundFiles"/>
 
     <Button
         android:id="@+id/buttonBack"

@@ -11,10 +11,41 @@
     tools:context="maustemies.passprotecter.CreateFileActivity">
 
     <TextView
+        android:id="@+id/textViewFileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp"
+        android:text="@string/textView_file_name"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFileName"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:layout_below="@+id/textViewFileName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <EditText
+            android:id="@+id/editTextFileName"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimaryText"
+            android:hint="@string/hint_file_name"/>
+    </LinearLayout>
+
+    <TextView
         android:id="@+id/textViewMainPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_below="@id/linearLayoutFileName"
+        android:layout_marginTop="40dp"
         android:textColor="@color/colorPrimaryText"
         android:textSize="20sp"
         android:text="@string/textView_main_password"/>
@@ -26,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textViewMainPassword"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:padding="20dp">
         <EditText
             android:id="@+id/editTextMainPassword"

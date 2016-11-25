@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 public class CreateFileActivity extends AppCompatActivity implements FileManager.FileManagerCreateFileInterface {
 
+    EditText editTextFileName;
     EditText editTextMainPassword;
     EditText editTextMainPasswordConfirmation;
 
@@ -19,6 +20,7 @@ public class CreateFileActivity extends AppCompatActivity implements FileManager
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_file);
 
+        editTextFileName = (EditText) findViewById(R.id.editTextFileName);
         editTextMainPassword = (EditText) findViewById(R.id.editTextMainPassword);
         editTextMainPasswordConfirmation = (EditText) findViewById(R.id.editTextMainPasswordConfirmation);
 
@@ -29,7 +31,7 @@ public class CreateFileActivity extends AppCompatActivity implements FileManager
                 if(!editTextMainPassword.getText().toString().equals("") && !editTextMainPasswordConfirmation.getText().toString().equals("")) {
                     if(editTextMainPassword.getText().toString().equals(editTextMainPasswordConfirmation.getText().toString())) {
                         FileManager fileManager = new FileManager(getApplicationContext(), CreateFileActivity.this);
-                        fileManager.createFile(MODE_PRIVATE, editTextMainPassword.getText().toString());
+                        fileManager.createFile(MODE_PRIVATE, editTextFileName.getText().toString(), editTextMainPassword.getText().toString());
                     }
                     else {
                         Toast.makeText(CreateFileActivity.this, "Passwords do not match!", Toast.LENGTH_LONG).show();

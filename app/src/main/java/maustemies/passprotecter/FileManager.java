@@ -60,17 +60,17 @@ public class FileManager {
         }
     }
 
-    public void createFile(int mode, String password) {
+    public void createFile(int mode, String fileName, String password) {
         Log.d(Constants.FILE_MANAGER_TAG, "createFile()");
 
-        String FILENAME = "passwords.pass";
+        fileName += ".pass";
         String stuffToWriteToFile = JSONUtils.CreatePasswordFileInJSON(password);
 
         try {
-            FileOutputStream fileOutputStream = mContext.openFileOutput(FILENAME, mode);
+            FileOutputStream fileOutputStream = mContext.openFileOutput(fileName, mode);
             fileOutputStream.write(stuffToWriteToFile.getBytes());
             fileOutputStream.close();
-            mFileManagerCreateFileInterface.onFileCreated(FILENAME);
+            mFileManagerCreateFileInterface.onFileCreated(fileName);
         }
         catch (Exception e) {
             e.printStackTrace();
