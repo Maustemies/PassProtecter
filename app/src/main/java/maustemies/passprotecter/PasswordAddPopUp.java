@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 /**
  * Created by Maustemies on 26.11.2016.
+ * R.I.P. Fidel Castro. Y en eso llegó Fidel...
  */
 
 public class PasswordAddPopUp extends Activity {

@@ -1,5 +1,13 @@
 apply plugin: 'com.android.application'
 
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
+def getDateTime() {
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    return df.format(new Date());
+}
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -15,6 +23,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-release", "PassProtecter-" + getDateTime()))
+                }
+            }
         }
     }
 }
