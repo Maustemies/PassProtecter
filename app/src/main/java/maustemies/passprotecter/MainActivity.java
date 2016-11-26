@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
     Button buttonCreateFile;
     ListView listView;
     TextView textViewInstructions;
+    ImageView imageViewLogo;
 
     FileManager fileManager;
     static String tempFileName;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
     private void InitViews() {
         listView = (ListView) findViewById(R.id.listView);
         textViewInstructions = (TextView) findViewById(R.id.textViewInstructions);
+        imageViewLogo = (ImageView) findViewById(R.id.imageViewLogo);
 
         buttonChooseFile = (Button) findViewById(R.id.buttonChooseFile);
         buttonChooseFile.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
                 if(resultCode == RESULT_OK) {
                     buttonCreateFile.setVisibility(View.GONE);
                     buttonChooseFile.setVisibility(View.GONE);
+                    imageViewLogo.setVisibility(View.GONE);
 
                     String password = data.getStringExtra(Constants.MAIN_PASSWORD_TAG);
                     tempMainPassword = password;
