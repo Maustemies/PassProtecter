@@ -21,6 +21,7 @@
         <activity android:name=".CreateFileActivity" />
         <activity android:name=".OpenFileActivity"></activity>
         <activity android:name=".PasswordQueryPopUp" android:theme="@style/AppTheme.PasswordPopUp"></activity>
+        <activity android:name=".PasswordAddPopUp" android:theme="@style/AppTheme.PasswordPopUp"></activity>
     </application>
 
 </manifest>

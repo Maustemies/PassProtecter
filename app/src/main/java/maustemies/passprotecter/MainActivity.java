@@ -26,9 +26,11 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
     TextView textViewInstructions;
 
     FileManager fileManager;
-    PasswordFile tempEncryptedPasswordFile;
-    PasswordFile tempDecryptedPasswordFile;
-    private List<PasswordListViewItem> passwordListViewItems;
+    static String tempFileName;
+    static String tempMainPassword;
+    static PasswordFile tempEncryptedPasswordFile;
+    static PasswordFile tempDecryptedPasswordFile;
+    private static List<PasswordListViewItem> passwordListViewItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +89,10 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
             }
             case R.id.action_addPassword:
             {
-                // TODO: Start password adding
+                if(listView.getVisibility() == View.VISIBLE) {
+                    Intent intent = new Intent(MainActivity.this, PasswordAddPopUp.class);
+                    startActivityForResult(intent, Constants.REQUEST_CODE_PASSWORD_ADD_POPUP);
+                }
                 break;
             }
         }
@@ -103,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
             {
                 if(resultCode == RESULT_OK) {
                     String fileName = data.getStringExtra(Constants.FILENAME_TAG);
+                    tempFileName = fileName;
                     Log.d(Constants.MAIN_ACTIVITY_TAG, "Selected file: " + fileName);
-                    Toast.makeText(MainActivity.this, "Selected file: " + fileName, Toast.LENGTH_LONG).show();
                     fileManager.readFile(fileName);
                 }
                 break;
@@ -113,22 +118,38 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
             {
                 if(resultCode == RESULT_OK) {
                     String fileName = data.getStringExtra(Constants.FILENAME_TAG);
+                    tempFileName = fileName;
                     Log.d(Constants.MAIN_ACTIVITY_TAG, "Selected file: " + fileName);
-                    Toast.makeText(MainActivity.this, "Selected file: " + fileName, Toast.LENGTH_LONG).show();
                     fileManager.readFile(fileName);
                 }
                 break;
             }
-            case Constants.REQUEST_CODE_PASSWORD_POPUP:
+            case Constants.REQUEST_CODE_PASSWORD_QUERY_POPUP:
             {
-                Log.d(Constants.MAIN_ACTIVITY_TAG, "Result from password popup: " + resultCode);
                 if(resultCode == RESULT_OK) {
                     buttonCreateFile.setVisibility(View.GONE);
                     buttonChooseFile.setVisibility(View.GONE);
 
                     String password = data.getStringExtra(Constants.MAIN_PASSWORD_TAG);
+                    tempMainPassword = password;
                     tempDecryptedPasswordFile = DecryptPasswordFile(password, tempEncryptedPasswordFile);
                     FillListViewFromJSON(tempDecryptedPasswordFile);
+                }
+                break;
+            }
+            case Constants.REQUEST_CODE_PASSWORD_ADD_POPUP:
+            {
+                if(resultCode == RESULT_OK) {
+                    String givenPasswordId = data.getStringExtra(Constants.PASSWORD_IDENTIFIER_TAG);
+                    String givenPassword = data.getStringExtra(Constants.PASSWORD_TAG);
+
+                    // Add the new password and its identifier to the temporary password file
+                    ArrayMap<String, String> passwords = tempDecryptedPasswordFile.Passwords;
+                    passwords.put(givenPasswordId, givenPassword);
+                    tempDecryptedPasswordFile.Passwords = passwords;
+
+                    // Write over the previous file
+                    fileManager.writeOverPasswordFile(MODE_PRIVATE, tempFileName, tempMainPassword, tempDecryptedPasswordFile);
                 }
                 break;
             }
@@ -173,6 +194,15 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
 
         Intent intent = new Intent(MainActivity.this, PasswordQueryPopUp.class);
         intent.putExtra(Constants.MAIN_PASSWORD_TAG, tempEncryptedPasswordFile.MainPassword);
-        startActivityForResult(intent, Constants.REQUEST_CODE_PASSWORD_POPUP);
+        startActivityForResult(intent, Constants.REQUEST_CODE_PASSWORD_QUERY_POPUP);
+    }
+
+    @Override
+    public void onPasswordFileOverwritten(PasswordFile passwordFile) {
+        Log.d(Constants.MAIN_ACTIVITY_TAG, "onDataAddedToFile");
+
+        tempEncryptedPasswordFile = passwordFile;
+        tempDecryptedPasswordFile = DecryptPasswordFile(tempMainPassword, tempEncryptedPasswordFile);
+        FillListViewFromJSON(tempDecryptedPasswordFile);
     }
 }

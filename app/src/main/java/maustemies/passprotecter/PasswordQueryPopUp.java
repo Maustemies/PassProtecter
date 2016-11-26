@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by Maustemies on 25.11.2016.
@@ -51,6 +52,9 @@ public class PasswordQueryPopUp extends Activity {
                     intent.putExtra(Constants.MAIN_PASSWORD_TAG, givenPassword);
                     setResult(RESULT_OK, intent);
                     finish();
+                }
+                else {
+                    Toast.makeText(PasswordQueryPopUp.this, "Wrong password given", Toast.LENGTH_LONG).show();
                 }
             }
         });

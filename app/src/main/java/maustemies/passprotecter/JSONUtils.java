@@ -49,4 +49,32 @@ public class JSONUtils {
 
         return passwordFile;
     }
+
+    public static String CreatePasswordFileJSONStringFromPasswordFile(PasswordFile passwordFile) {
+        Log.d(Constants.JSON_UTILS_TAG, "CreatePasswordFileJSONStringFromPasswordFile()");
+
+        String result = "";
+
+        try {
+            result = "{ \""+PasswordFile.MAIN_PASSWORD_TAG+"\" : \""+passwordFile.MainPassword+"\"," +
+                    "\""+PasswordFile.PASSWORD_LIST_OBJECT_TAG+"\" : {";
+
+            ArrayMap<String, String> passwordList = passwordFile.Passwords;
+            for(int i = 0; i < passwordList.size(); i++) {
+                String passwordObject = "\"" + passwordList.keyAt(i) + "\" : \"" + passwordList.valueAt(i) + "\"";
+                if(i < passwordList.size()-1) passwordObject += ",";
+                result += passwordObject;
+            }
+
+            result += " } }";
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Log.w(Constants.JSON_UTILS_TAG, "Error in CreatePasswordFileJsonStringFromPasswordFile : " + e);
+            result = "";
+        }
+
+        return result;
+    }
 }

@@ -18,6 +18,7 @@ public class FileManager {
     public interface FileManagerMainActivityInterface {
         public void onError(String error);
         public void onFileDataRead(String data);
+        public void onPasswordFileOverwritten(PasswordFile passwordFile);
     }
 
     public interface FileManagerCreateFileInterface {
@@ -76,6 +77,33 @@ public class FileManager {
             e.printStackTrace();
             Log.w(Constants.FILE_MANAGER_TAG, "Error in createFile: " + e);
             mFileManagerCreateFileInterface.onError("Could not create the password file");
+        }
+    }
+
+    public void writeOverPasswordFile(int mode, String fileName, String password, PasswordFile passwordFile) {
+        Log.d(Constants.FILE_MANAGER_TAG, "writeOverPasswordFile with mode: " + mode + ", fileName: " + fileName + ", password: " + password);
+
+
+        PasswordFile givenPasswordFile = SecurityEngine.EncryptPasswordFile(password, passwordFile);
+
+        // Encrypt received passwordFile -> turn it into string -> save it
+        String passwordFileInJSONString = JSONUtils.CreatePasswordFileJSONStringFromPasswordFile(givenPasswordFile);
+        if(passwordFileInJSONString.equals("")) {
+            mFileManagerMainActivityInterface.onError("Could not parse given password file when writing it over!");
+            Log.w(Constants.FILE_MANAGER_TAG, "Error in writing over password file - password file conversion to string failed");
+            return;
+        }
+
+        try {
+            FileOutputStream fileOutputStream = mContext.openFileOutput(fileName, mode);
+            fileOutputStream.write(passwordFileInJSONString.getBytes());
+            fileOutputStream.close();
+            mFileManagerMainActivityInterface.onPasswordFileOverwritten(givenPasswordFile);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Log.w(Constants.FILE_MANAGER_TAG, "Error in writing over password file");
+            mFileManagerMainActivityInterface.onError("Could not write over the password file!");
         }
     }
 }

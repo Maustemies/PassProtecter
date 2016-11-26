@@ -2,7 +2,7 @@
     <string name="app_name">PassProtecter</string>
 
     <!--
-    Upper menu stuff
+    Drop-down menu stuff
     -->
     <string name="action_settings">Settings</string>
     <string name="action_addPassword">Add Password</string>
@@ -34,4 +34,13 @@
     <string name="button_back">&#8592;Back</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_ok">OK</string>
+
+    <!--
+    PasswordAddPopUp stuff
+    -->
+    <string name="textViewIdentifier">Service</string>
+    <string name="hint_identifier">Where do you use this password?</string>
+    <string name="textView_password">Password</string>
+    <string name="hint_password">Give the password</string>
+    <string name="hint_password_confirmation">Re-type the password</string>
 </resources>
