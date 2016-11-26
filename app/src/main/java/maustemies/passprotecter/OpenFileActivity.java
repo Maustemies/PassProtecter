@@ -25,15 +25,6 @@ public class OpenFileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_file);
 
-        Button buttonBack = (Button) findViewById(R.id.buttonBack);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setResult(RESULT_CANCELED);
-                finish();
-            }
-        });
-
         listView = (ListView) findViewById(R.id.listView);
 
         final ArrayList<String> fileNames = new ArrayList<>();
