@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity implements FileManager.FileM
                     Intent intent = new Intent(MainActivity.this, PasswordAddPopUp.class);
                     startActivityForResult(intent, Constants.REQUEST_CODE_PASSWORD_ADD_POPUP);
                 }
+                else {
+                    Toast.makeText(MainActivity.this, "Cannot add password before loading a password file!", Toast.LENGTH_LONG).show();
+                }
                 break;
             }
         }
